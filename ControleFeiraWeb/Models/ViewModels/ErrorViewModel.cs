@@ -1,6 +1,6 @@
 using System;
 
-namespace ControleFeiraWeb.Models
+namespace ControleFeiraWeb.Models.ViewModels
 {
     public class ErrorViewModel
     {
