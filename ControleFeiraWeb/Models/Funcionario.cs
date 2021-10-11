@@ -21,7 +21,42 @@ namespace ControleFeiraWeb.Models
         public string Telefone_Celular { get; set; }
         public string Endereco { get; set; }
         public string Profissao { get; set; }
+        public ICollection<Lancamento> Lancamentos { get; set; } = new List<Lancamento>();
+        public Departamento Departamento { get; set; }
 
+        public Funcionario()
+        {
+        }
 
+        public Funcionario(int id, string nome, string cPF, string rG, string email, DateTime data_Nascimento, string telefone_Celular, string endereco, string profissao, Departamento departamento)
+        {
+            Id = id;
+            Nome = nome;
+            CPF = cPF;
+            RG = rG;
+            Email = email;
+            Data_Nascimento = data_Nascimento;
+            Telefone_Celular = telefone_Celular;
+            Endereco = endereco;
+            Profissao = profissao;
+            Departamento = departamento;
+        }
+
+        public void AddLancamentos(Lancamento l)
+        {
+            Lancamentos.Add(l);
+        }
+
+        public void RemoveLancamento(Lancamento l)
+        {
+            Lancamentos.Remove(l);
+        }
+
+        public double TotalLancamento(DateTime inicial, DateTime final)
+        {
+            return Lancamentos.Where(l => l.DataLancamento >= inicial && l.DataLancamento <= final).Sum(l => l.ValorLancamento);
+        }
+     
     }
+
 }

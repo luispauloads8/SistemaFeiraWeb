@@ -14,6 +14,10 @@ namespace ControleFeiraWeb.Data
         {
         }
 
-        public DbSet<ControleFeiraWeb.Models.Funcionario> Funcionario { get; set; }
+        public DbSet<Funcionario> Funcionario { get; set; }
+        public DbSet<Departamento> Departamento { get; set; }
+        public DbSet<Produto> Produto { get; set; }
+        public DbSet<Lancamento> Lancamento { get; set; }
+
     }
 }
