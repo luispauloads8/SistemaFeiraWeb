@@ -14,13 +14,14 @@ namespace ControleFeiraWeb.Models
         public DateTime DataLancamento { get; set; }
         public MovimentacaoStatus Status { get; set; }
         public Funcionario Funcionario { get; set; }
-        public ICollection<Produto> Produtos { get; set; } = new List<Produto>();
+        public Produto Produto{ get; set; }
+
 
         public Lancamento()
         {
         }
 
-        public Lancamento(int id, double valorLancamento, string descricao, DateTime dataLancamento, MovimentacaoStatus status, Funcionario funcionario)
+        public Lancamento(int id, double valorLancamento, string descricao, DateTime dataLancamento, MovimentacaoStatus status, Funcionario funcionario, Produto produto)
         {
             Id = id;
             ValorLancamento = valorLancamento;
@@ -28,16 +29,8 @@ namespace ControleFeiraWeb.Models
             DataLancamento = dataLancamento;
             Status = status;
             Funcionario = funcionario;
+            Produto = produto;
         }
 
-        public void AddProduto(Produto p)
-        {
-            Produtos.Add(p);
-        }
-
-        public void RemoveProduto(Produto p)
-        {
-            Produtos.Remove(p);
-        }
     }
 }

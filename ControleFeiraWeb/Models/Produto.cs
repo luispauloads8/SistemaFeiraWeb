@@ -9,17 +9,16 @@ namespace ControleFeiraWeb.Models
     {
         public int Id { get; set; }
         public string Descrição { get; set; }
-        public Funcionario Funcionario { get; set; }
+        public ICollection<Produto> Produtos { get; set; } = new List<Produto>();
 
         public Produto()
         {
         }
 
-        public Produto(int id, string descrição, Funcionario funcionario)
+        public Produto(int id, string descrição)
         {
             Id = id;
             Descrição = descrição;
-            Funcionario = funcionario;
         }
     }
 }

@@ -15,7 +15,7 @@ namespace ControleFeiraWeb.Models
         {
         }
 
-        public Departamento(int id, string nome, Funcionario funcionario)
+        public Departamento(int id, string nome)
         {
             Id = id;
             Nome = nome;
@@ -24,11 +24,6 @@ namespace ControleFeiraWeb.Models
         public void AddFuncionario(Funcionario f)
         {
             Funcionarios.Add(f);
-        }
-
-        public void RemoveFuncionario(Funcionario f)
-        {
-            Funcionarios.Remove(f);
         }
 
         public double TotalFuncionario(DateTime inicial, DateTime final)

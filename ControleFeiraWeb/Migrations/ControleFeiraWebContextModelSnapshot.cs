@@ -70,6 +70,8 @@ namespace ControleFeiraWeb.Migrations
 
                     b.Property<int?>("FuncionarioId");
 
+                    b.Property<int?>("ProdutoId");
+
                     b.Property<int>("Status");
 
                     b.Property<double>("ValorLancamento");
@@ -77,6 +79,8 @@ namespace ControleFeiraWeb.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("FuncionarioId");
+
+                    b.HasIndex("ProdutoId");
 
                     b.ToTable("Lancamento");
                 });
@@ -88,15 +92,11 @@ namespace ControleFeiraWeb.Migrations
 
                     b.Property<string>("Descrição");
 
-                    b.Property<int?>("FuncionarioId");
-
-                    b.Property<int?>("LancamentoId");
+                    b.Property<int?>("ProdutoId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FuncionarioId");
-
-                    b.HasIndex("LancamentoId");
+                    b.HasIndex("ProdutoId");
 
                     b.ToTable("Produto");
                 });
@@ -113,17 +113,17 @@ namespace ControleFeiraWeb.Migrations
                     b.HasOne("ControleFeiraWeb.Models.Funcionario", "Funcionario")
                         .WithMany("Lancamentos")
                         .HasForeignKey("FuncionarioId");
+
+                    b.HasOne("ControleFeiraWeb.Models.Produto", "Produto")
+                        .WithMany()
+                        .HasForeignKey("ProdutoId");
                 });
 
             modelBuilder.Entity("ControleFeiraWeb.Models.Produto", b =>
                 {
-                    b.HasOne("ControleFeiraWeb.Models.Funcionario", "Funcionario")
-                        .WithMany()
-                        .HasForeignKey("FuncionarioId");
-
-                    b.HasOne("ControleFeiraWeb.Models.Lancamento")
+                    b.HasOne("ControleFeiraWeb.Models.Produto")
                         .WithMany("Produtos")
-                        .HasForeignKey("LancamentoId");
+                        .HasForeignKey("ProdutoId");
                 });
 #pragma warning restore 612, 618
         }
