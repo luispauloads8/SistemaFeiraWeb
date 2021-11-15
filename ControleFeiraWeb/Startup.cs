@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ControleFeiraWeb.Data;
+using ControleFeiraWeb.Services;
 
 namespace ControleFeiraWeb
 {
@@ -42,6 +43,7 @@ namespace ControleFeiraWeb
 
             //registra serviço no processo de injeção de dependencia da aplicação!
             services.AddScoped<SeedingService>();
+            services.AddScoped<FuncionarioService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
