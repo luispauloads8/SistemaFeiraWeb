@@ -16,7 +16,6 @@ namespace ControleFeiraWeb.Models
         public Funcionario Funcionario { get; set; }
         public Produto Produto{ get; set; }
 
-
         public Lancamento()
         {
         }

@@ -24,6 +24,8 @@ namespace ControleFeiraWeb.Models
         public ICollection<Lancamento> Lancamentos { get; set; } = new List<Lancamento>();
         public Departamento Departamento { get; set; }
 
+        public int DepartamentoId { get; set; }
+
         public Funcionario()
         {
         }
