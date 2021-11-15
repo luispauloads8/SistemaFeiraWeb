@@ -27,6 +27,18 @@ namespace ControleFeiraWeb.Services
             _context.Add(obj);
             _context.SaveChanges();
         }
+
+        public Funcionario FindById(int id)
+        {
+            return _context.Funcionario.FirstOrDefault(obj => obj.Id == id);
+        }
+
+        public void Remove(int id)
+        {
+            var obj = _context.Funcionario.Find(id);
+            _context.Funcionario.Remove(obj);
+            _context.SaveChanges();
+        }
     }
 
 }
