@@ -24,7 +24,6 @@ namespace ControleFeiraWeb.Services
 
         public void Insert(Funcionario obj)
         {
-            obj.Departamento = _context.Departamento.First();
             _context.Add(obj);
             _context.SaveChanges();
         }

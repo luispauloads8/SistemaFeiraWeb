@@ -1,4 +1,4 @@
-﻿@model ControleFeiraWeb.Models.Funcionario
+﻿@model ControleFeiraWeb.Models.ViewModels.FuncionarioFormViewModel
 
 @{
     ViewData["Title"] = "Cadastro";
@@ -13,44 +13,48 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Nome" class="control-label"></label>
-                <input asp-for="Nome" class="form-control" />
-                <span asp-validation-for="Nome" class="text-danger"></span>
+                <label asp-for="Funcionario.Nome" class="control-label"></label>
+                <input asp-for="Funcionario.Nome" class="form-control" />
+                <span asp-validation-for="Funcionario.Nome" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CPF" class="control-label"></label>
-                <input asp-for="CPF" class="form-control" />
-                <span asp-validation-for="CPF" class="text-danger"></span>
+                <label asp-for="Funcionario.CPF" class="control-label"></label>
+                <input asp-for="Funcionario.CPF" class="form-control" />
+                <span asp-validation-for="Funcionario.CPF" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="RG" class="control-label"></label>
-                <input asp-for="RG" class="form-control" />
-                <span asp-validation-for="RG" class="text-danger"></span>
+                <label asp-for="Funcionario.RG" class="control-label"></label>
+                <input asp-for="Funcionario.RG" class="form-control" />
+                <span asp-validation-for="Funcionario.RG" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
+                <label asp-for="Funcionario.Email" class="control-label"></label>
+                <input asp-for="Funcionario.Email" class="form-control" />
+                <span asp-validation-for="Funcionario.Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Data_Nascimento" class="control-label"></label>
-                <input asp-for="Data_Nascimento" class="form-control" />
-                <span asp-validation-for="Data_Nascimento" class="text-danger"></span>
+                <label asp-for="Funcionario.Data_Nascimento" class="control-label"></label>
+                <input asp-for="Funcionario.Data_Nascimento" class="form-control" />
+                <span asp-validation-for="Funcionario.Data_Nascimento" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Telefone_Celular" class="control-label"></label>
-                <input asp-for="Telefone_Celular" class="form-control" />
-                <span asp-validation-for="Telefone_Celular" class="text-danger"></span>
+                <label asp-for="Funcionario.Telefone_Celular" class="control-label"></label>
+                <input asp-for="Funcionario.Telefone_Celular" class="form-control" />
+                <span asp-validation-for="Funcionario.Telefone_Celular" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Endereco" class="control-label"></label>
-                <input asp-for="Endereco" class="form-control" />
-                <span asp-validation-for="Endereco" class="text-danger"></span>
+                <label asp-for="Funcionario.Endereco" class="control-label"></label>
+                <input asp-for="Funcionario.Endereco" class="form-control" />
+                <span asp-validation-for="Funcionario.Endereco" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Profissao" class="control-label"></label>
-                <input asp-for="Profissao" class="form-control" />
-                <span asp-validation-for="Profissao" class="text-danger"></span>
+                <label asp-for="Funcionario.Profissao" class="control-label"></label>
+                <input asp-for="Funcionario.Profissao" class="form-control" />
+                <span asp-validation-for="Funcionario.Profissao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Funcionario.DepartamentoId" class="control-label"></label>
+                <select asp-for="Funcionario.DepartamentoId" asp-items="@(new SelectList(Model.Departamentos,"Id","Nome"))" class="form-control"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Cadastrar" class="btn btn-default" />

@@ -44,6 +44,7 @@ namespace ControleFeiraWeb
             //registra serviço no processo de injeção de dependencia da aplicação!
             services.AddScoped<SeedingService>();
             services.AddScoped<FuncionarioService>();
+            services.AddScoped<DepartamentoService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
