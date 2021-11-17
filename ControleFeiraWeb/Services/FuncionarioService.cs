@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace ControleFeiraWeb.Services
 {
@@ -30,7 +31,7 @@ namespace ControleFeiraWeb.Services
 
         public Funcionario FindById(int id)
         {
-            return _context.Funcionario.FirstOrDefault(obj => obj.Id == id);
+            return _context.Funcionario.Include(obj =>obj.Departamento).FirstOrDefault(obj => obj.Id == id);
         }
 
         public void Remove(int id)
