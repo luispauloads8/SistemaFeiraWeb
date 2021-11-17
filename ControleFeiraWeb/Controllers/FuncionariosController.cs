@@ -10,6 +10,7 @@ using ControleFeiraWeb.Models;
 using ControleFeiraWeb.Services;
 using ControleFeiraWeb.Models.ViewModels;
 using ControleFeiraWeb.Services.Exceptions;
+using System.Diagnostics;
 
 namespace ControleFeiraWeb.Controllers
 {
@@ -49,13 +50,13 @@ namespace ControleFeiraWeb.Controllers
         {
             if(id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id não Fornecido" });
             }
 
             var obj = _funcionarioService.FindById(id.Value);
             if (obj == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id não Existe" });
             }
 
             return View(obj);
@@ -72,13 +73,13 @@ namespace ControleFeiraWeb.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id não Fornecido" });
             }
 
             var obj = _funcionarioService.FindById(id.Value);
             if (obj == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id não Existe" });
             }
 
             return View(obj);
@@ -88,13 +89,13 @@ namespace ControleFeiraWeb.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id não Fornecido" });
             }
 
             var obj = _funcionarioService.FindById(id.Value);
             if (obj == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id não Existe" });
             }
 
             List<Departamento> departamentos = _departamentoService.FindAll();
@@ -108,21 +109,27 @@ namespace ControleFeiraWeb.Controllers
         {
             if (id != funcionario.Id)
             {
-                return BadRequest();
+                return RedirectToAction(nameof(Error), new { message = "Id são diferentes" });
             }
             try
             {
                 _funcionarioService.Update(funcionario);
                 return RedirectToAction(nameof(Index));
-            } catch (NotFoundException)
+            } catch (ApplicationException e)
             {
-
-                return NotFound();
-            } catch(DbConcurrencyException)
-            {
-                return BadRequest();
+                return RedirectToAction(nameof(Error), new { message = e.Message });
             }
-            
+        }
+
+        public IActionResult Error(string message)
+        {
+            var viewModel = new ErrorViewModel
+            {
+                Message = message,
+                //obter id interno da requisição
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            };
+            return View(viewModel);
         }
     }
 }
