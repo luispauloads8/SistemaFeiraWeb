@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using ControleFeiraWeb.Services.Exceptions;
 
 namespace ControleFeiraWeb.Services
 {
@@ -39,6 +40,24 @@ namespace ControleFeiraWeb.Services
             var obj = _context.Funcionario.Find(id);
             _context.Funcionario.Remove(obj);
             _context.SaveChanges();
+        }
+
+        public void Update(Funcionario obj)
+        {
+            if (!_context.Funcionario.Any(x => x.Id == obj.Id))
+            {
+                throw new NotFoundException("Id não existe");
+            }
+            try
+            {
+                _context.Update(obj);
+                _context.SaveChanges();
+            } catch (DbUpdateConcurrencyException e)
+            {
+
+                throw new DbConcurrencyException(e.Message);
+            }
+            
         }
     }
 

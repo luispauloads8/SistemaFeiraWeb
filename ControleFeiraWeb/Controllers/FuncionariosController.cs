@@ -9,6 +9,7 @@ using ControleFeiraWeb.Data;
 using ControleFeiraWeb.Models;
 using ControleFeiraWeb.Services;
 using ControleFeiraWeb.Models.ViewModels;
+using ControleFeiraWeb.Services.Exceptions;
 
 namespace ControleFeiraWeb.Controllers
 {
@@ -81,6 +82,47 @@ namespace ControleFeiraWeb.Controllers
             }
 
             return View(obj);
+        }
+
+        public IActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var obj = _funcionarioService.FindById(id.Value);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+
+            List<Departamento> departamentos = _departamentoService.FindAll();
+            FuncionarioFormViewModel ViewModel = new FuncionarioFormViewModel { Funcionario = obj, Departamentos = departamentos };
+            return View(ViewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(int id, Funcionario funcionario)
+        {
+            if (id != funcionario.Id)
+            {
+                return BadRequest();
+            }
+            try
+            {
+                _funcionarioService.Update(funcionario);
+                return RedirectToAction(nameof(Index));
+            } catch (NotFoundException)
+            {
+
+                return NotFound();
+            } catch(DbConcurrencyException)
+            {
+                return BadRequest();
+            }
+            
         }
     }
 }
