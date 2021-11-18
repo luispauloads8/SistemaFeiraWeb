@@ -42,6 +42,13 @@ namespace ControleFeiraWeb.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Funcionario funcionario)
         {
+            if (!ModelState.IsValid)
+            {
+                var departamentos = _departamentoService.FindAll();
+                var viewModel = new FuncionarioFormViewModel { Funcionario = funcionario, Departamentos = departamentos };
+                return View(viewModel);
+            }
+
             _funcionarioService.Insert(funcionario);
             return RedirectToAction(nameof(Index));
         }
@@ -107,6 +114,13 @@ namespace ControleFeiraWeb.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, Funcionario funcionario)
         {
+            if (!ModelState.IsValid)
+            {
+                var departamentos = _departamentoService.FindAll();
+                var viewModel = new FuncionarioFormViewModel { Funcionario = funcionario, Departamentos = departamentos };
+                return View(viewModel);
+            } 
+
             if (id != funcionario.Id)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id são diferentes" });

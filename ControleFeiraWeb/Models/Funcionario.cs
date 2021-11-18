@@ -9,6 +9,9 @@ namespace ControleFeiraWeb.Models
     public class Funcionario
     {
         public int Id { get; set; }
+
+        [Required(ErrorMessage ="{0} Obrigatorio!")]
+        [StringLength(60, MinimumLength = 3, ErrorMessage ="O Tamanho do {0} deve ser entre {2} e {1} caracteres")]
         public string Nome { get; set; }
 
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:###-##-####}")]
@@ -16,18 +19,21 @@ namespace ControleFeiraWeb.Models
         public string RG { get; set; }
 
         [DataType(DataType.EmailAddress)]
+        [Required(ErrorMessage = "{0} Obrigatorio!")]
+        [EmailAddress(ErrorMessage ="E-mail Invalido")]
         public string Email { get; set; }
 
         [Display(Name = "Data Nascimento")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString ="{0:dd/MM/yyyy}")]
-
+        [Required(ErrorMessage = "{0} Obrigatorio!")]
         public DateTime Data_Nascimento { get; set; }
 
 
         [Display(Name ="Telefone Celular")]
         public string Telefone_Celular { get; set; }
 
+        [Required(ErrorMessage = "{0} Obrigatorio!")]
         public string Endereco { get; set; }
         public string Profissao { get; set; }
         public ICollection<Lancamento> Lancamentos { get; set; } = new List<Lancamento>();
