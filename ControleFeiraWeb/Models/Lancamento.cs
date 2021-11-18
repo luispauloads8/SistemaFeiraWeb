@@ -1,6 +1,7 @@
 ﻿using ControleFeiraWeb.Models.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,6 +10,7 @@ namespace ControleFeiraWeb.Models
     public class Lancamento
     {
         public int Id { get; set; }
+        [DisplayFormat(DataFormatString = "{0:F2}")]
         public double ValorLancamento { get; set; }
         public string Descricao { get; set; }
         public DateTime DataLancamento { get; set; }

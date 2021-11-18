@@ -14,11 +14,20 @@ namespace ControleFeiraWeb.Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:###-##-####}")]
         public string CPF { get; set; }
         public string RG { get; set; }
+
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
+        [Display(Name = "Data Nascimento")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString ="{0:dd/MM/yyyy}")]
+
         public DateTime Data_Nascimento { get; set; }
+
+
+        [Display(Name ="Telefone Celular")]
         public string Telefone_Celular { get; set; }
+
         public string Endereco { get; set; }
         public string Profissao { get; set; }
         public ICollection<Lancamento> Lancamentos { get; set; } = new List<Lancamento>();
