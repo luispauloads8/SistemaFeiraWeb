@@ -25,42 +25,42 @@ namespace ControleFeiraWeb.Controllers
             _departamentoService = departamentoService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var list = _funcionarioService.FindAll();
+            var list = await _funcionarioService.FindAllAsync();
             return View(list);
         }
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            var departamentos = _departamentoService.FindAll();
+            var departamentos = await _departamentoService.FindAllAsync();
             var viewModel = new FuncionarioFormViewModel { Departamentos = departamentos };
             return View(viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Funcionario funcionario)
+        public async Task<IActionResult> Create(Funcionario funcionario)
         {
             if (!ModelState.IsValid)
             {
-                var departamentos = _departamentoService.FindAll();
+                var departamentos = await _departamentoService.FindAllAsync();
                 var viewModel = new FuncionarioFormViewModel { Funcionario = funcionario, Departamentos = departamentos };
                 return View(viewModel);
             }
 
-            _funcionarioService.Insert(funcionario);
+            await _funcionarioService.InsertAsync(funcionario);
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Delete(int? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if(id == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id não Fornecido" });
             }
 
-            var obj = _funcionarioService.FindById(id.Value);
+            var obj = await _funcionarioService.FindByIdAsync(id.Value);
             if (obj == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id não Existe" });
@@ -70,20 +70,20 @@ namespace ControleFeiraWeb.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            _funcionarioService.Remove(id);
+            await _funcionarioService.RemoveAsync(id);
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Details(int? id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id não Fornecido" });
             }
 
-            var obj = _funcionarioService.FindById(id.Value);
+            var obj = await _funcionarioService.FindByIdAsync(id.Value);
             if (obj == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id não Existe" });
@@ -92,31 +92,31 @@ namespace ControleFeiraWeb.Controllers
             return View(obj);
         }
 
-        public IActionResult Edit(int? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id não Fornecido" });
             }
 
-            var obj = _funcionarioService.FindById(id.Value);
+            var obj = await _funcionarioService.FindByIdAsync(id.Value);
             if (obj == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id não Existe" });
             }
 
-            List<Departamento> departamentos = _departamentoService.FindAll();
+            List<Departamento> departamentos = await _departamentoService.FindAllAsync();
             FuncionarioFormViewModel ViewModel = new FuncionarioFormViewModel { Funcionario = obj, Departamentos = departamentos };
             return View(ViewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, Funcionario funcionario)
+        public async Task<IActionResult> Edit(int id, Funcionario funcionario)
         {
             if (!ModelState.IsValid)
             {
-                var departamentos = _departamentoService.FindAll();
+                var departamentos = await _departamentoService.FindAllAsync();
                 var viewModel = new FuncionarioFormViewModel { Funcionario = funcionario, Departamentos = departamentos };
                 return View(viewModel);
             } 
@@ -127,7 +127,7 @@ namespace ControleFeiraWeb.Controllers
             }
             try
             {
-                _funcionarioService.Update(funcionario);
+                await _funcionarioService.UpdateAsync(funcionario);
                 return RedirectToAction(nameof(Index));
             } catch (ApplicationException e)
             {
