@@ -37,9 +37,17 @@ namespace ControleFeiraWeb.Services
 
         public async Task RemoveAsync(int id)
         {
-            var obj = await _context.Funcionario.FindAsync(id);
-            _context.Funcionario.Remove(obj);
-           await _context.SaveChangesAsync();
+            try
+            {
+                var obj = await _context.Funcionario.FindAsync(id);
+                _context.Funcionario.Remove(obj);
+                await _context.SaveChangesAsync();
+
+            } catch (DbUpdateException e)
+            {
+                throw new IntegrityException("Não é permitido excluir o Funciónario poís existe Lançamentos!");
+            }
+           
         }
 
         public async Task UpdateAsync(Funcionario obj)
