@@ -27,7 +27,7 @@ namespace ControleFeiraWeb.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Descrição = table.Column<string>(nullable: true),
+                    Descricao = table.Column<string>(nullable: true),
                     ProdutoId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>

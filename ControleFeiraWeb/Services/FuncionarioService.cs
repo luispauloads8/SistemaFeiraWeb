@@ -43,7 +43,7 @@ namespace ControleFeiraWeb.Services
                 _context.Funcionario.Remove(obj);
                 await _context.SaveChangesAsync();
 
-            } catch (DbUpdateException e)
+            } catch (DbUpdateException)
             {
                 throw new IntegrityException("Não é permitido excluir o Funciónario poís existe Lançamentos!");
             }

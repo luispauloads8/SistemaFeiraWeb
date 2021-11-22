@@ -19,5 +19,6 @@ namespace ControleFeiraWeb.Data
         public DbSet<Produto> Produto { get; set; }
         public DbSet<Lancamento> Lancamento { get; set; }
 
+
     }
 }

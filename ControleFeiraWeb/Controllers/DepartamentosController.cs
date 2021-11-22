@@ -7,16 +7,22 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ControleFeiraWeb.Models;
 using ControleFeiraWeb.Data;
+using ControleFeiraWeb.Models.ViewModels;
+using System.Diagnostics;
+using ControleFeiraWeb.Services.Exceptions;
+using ControleFeiraWeb.Services;
 
 namespace SalesWebMvc.Controllers
 {
     public class DepartamentosController : Controller
     {
         private readonly ControleFeiraWebContext _context;
+        private readonly DepartamentoService _departamentoService;
 
-        public DepartamentosController(ControleFeiraWebContext context)
+        public DepartamentosController(ControleFeiraWebContext context, DepartamentoService departamentoService)
         {
             _context = context;
+            _departamentoService = departamentoService;
         }
 
         // GET: Departaments
@@ -134,19 +140,38 @@ namespace SalesWebMvc.Controllers
         }
 
         // POST: Departaments/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var departamento = await _context.Departamento.FindAsync(id);
-            _context.Departamento.Remove(departamento);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                _departamentoService.Remove(id);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+
+            } catch (IntegrityException e)
+            {
+
+                return RedirectToAction(nameof(Error), new { message = e.Message });
+            }
+            
         }
 
         private bool DepartamentExists(int id)
         {
             return _context.Departamento.Any(e => e.Id == id);
+        }
+
+        public IActionResult Error(string message)
+        {
+            var viewModel = new ErrorViewModel
+            {
+                Message = message,
+                //obter id interno da requisição
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            };
+            return View(viewModel);
         }
     }
 }
