@@ -6,37 +6,38 @@
     <title>@ViewData["Title"] - ControleFeiraWeb</title>
 
     <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-flatly.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
-    </environment>
-    <environment exclude="Development">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     </environment>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+    <nav class="navbar-collapse navbar-fixed-top navbar-expand-lg navbar-light bg-light" id="navbarNav">
+        <div class="container-fluid" id="navbarNav">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+                <button 
+                   type="button" 
+                   class="navbar-toggler" 
+                   data-bs-toggle="collapse" 
+                   data-bs-target="#navbarNav"
+                   aria-controls="navbarNav"
+                   aria-expanded="false"
+                   aria-label="Toggle Navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
                 </button>
                 <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">ControleFeiraWeb</a>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Funcionarios" asp-action="Index">Funcionarios</a></li>
-                    <li><a asp-area="" asp-controller="Departamentos" asp-action="Index">Departamentos</a></li>
-                    <li><a asp-area="" asp-controller="Produtos" asp-action="Index">Produtos</a></li>
-                    <li><a asp-area="" asp-controller="Lancamentos" asp-action="Index">Lancamentos</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav" >
+                    <li class="nav-item"><a asp-area="" asp-controller="Home" class="nav-link active" asp-action="Index" aria-current="page" >Home</a></li>
+                    <li class="nav-item" ><a asp-area="" asp-controller="Funcionarios" class="nav-link" asp-action="Index" aria-current="page" >Funcionarios</a></li>
+                    <li class="nav-item" ><a asp-area="" asp-controller="Departamentos" class="nav-link" asp-action="Index" aria-current="page" >Departamentos</a></li>
+                    <li class="nav-item" ><a asp-area="" asp-controller="Produtos" class="nav-link" asp-action="Index" aria-current="page">Produtos</a></li>
+                    <li class="nav-item" ><a asp-area="" asp-controller="Lancamentos" class="nav-link" asp-action="Index" aria-current="page" >Lancamentos</a></li>
+                    <li class="nav-item" ><a asp-area="" asp-controller="Home" class="nav-link" asp-action="About" aria-current="page" >About</a></li>
+                    <li class="nav-item" ><a asp-area="" asp-controller="Home" class="nav-link" asp-action="Contact" aria-current="page" >Contact</a></li>
                 </ul>
             </div>
         </div>
@@ -64,12 +65,10 @@
                 crossorigin="anonymous"
                 integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
         </script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
-                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                crossorigin="anonymous"
-                integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd">
-        </script>
+        <!-- JavaScript Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
+        crossorigin="anonymous"></script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
 

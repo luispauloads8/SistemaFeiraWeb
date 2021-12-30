@@ -26,10 +26,11 @@ namespace ControleFeiraWeb.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var list = _produtoService.FindAll();
+            var list = await _produtoService.FindAllAsync();
             return View(list);
+            
         }
 
         public IActionResult Create()

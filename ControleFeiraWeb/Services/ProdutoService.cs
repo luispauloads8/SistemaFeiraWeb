@@ -18,9 +18,9 @@ namespace ControleFeiraWeb.Services
             _context = context;
         }
 
-        public List<Produto> FindAll()
+        public async Task<List<Produto>> FindAllAsync()
         {
-            return _context.Produto.OrderBy(x => x.Descricao).ToList();
+            return await _context.Produto.OrderBy(x => x.Descricao).ToListAsync();
         }
 
         public void Insert(Produto obj)

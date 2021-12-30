@@ -1,0 +1,54 @@
+﻿@model ControleFeiraWeb.Models.Lancamento
+
+@{ 
+    ViewData["Title"] = "Details";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div>
+    <h4>Lançamento</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DataLancamento)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DataLancamento)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ValorLancamento)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ValorLancamento)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Produto.Descricao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Produto.Descricao)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Funcionario.Nome)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Funcionario.Nome)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-success">Editar</a>
+    <a asp-action="Index">Retornar na Listagem</a>
+</div>

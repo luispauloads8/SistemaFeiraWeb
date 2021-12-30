@@ -1,0 +1,57 @@
+﻿@model ControleFeiraWeb.Models.ViewModels.LancamentoFormViewModel
+@using ControleFeiraWeb.Models.Enums;
+
+@{
+    ViewData["Title"] = "Novo";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<h4>Lançamentos</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div class="form-group">
+                <label asp-for="Lancamento.DataLancamento" class="control-label"></label>
+                <input asp-for="Lancamento.DataLancamento" class="form-control" />
+                <span asp-validation-for="Lancamento.DataLancamento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Lancamento.Descricao" class="control-label"></label>
+                <input asp-for="Lancamento.Descricao" class="form-control" />
+                <span asp-validation-for="Lancamento.Descricao" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="Lancamento.Status" class="control-label"></label>
+                <select asp-for="Lancamento.Status" asp-items="Html.GetEnumSelectList<MovimentacaoStatus>()" class="form-control form-select"></select>
+                <span asp-validation-for="Lancamento.Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Lancamento.ValorLancamento" class="control-label"></label>
+                <input asp-for="Lancamento.ValorLancamento" class="form-control" />
+                <span asp-validation-for="Lancamento.ValorLancamento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Lancamento.ProdutoId" class="control-label"></label>
+                <select asp-for="Lancamento.ProdutoId" asp-items="@(new SelectList(Model.Produtos,"Id","Descricao"))" class="form-control form-select"></select>
+            </div>
+            <div>
+                <label asp-for="Lancamento.FuncionarioId" class="control-label"></label>
+                <select asp-for="Lancamento.FuncionarioId" asp-items="@(new SelectList(Model.Funcionarios,"Id","Nome"))" class="form-control form-select"></select>
+            </div>
+            <div class="form-group formgroup">
+                <input type="submit" value="Cadastrar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Retornar na Listagem</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

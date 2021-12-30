@@ -1,0 +1,57 @@
+﻿@model ControleFeiraWeb.Models.Lancamento
+
+@{ 
+    ViewData["Title"] = "Delete";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<h3>Confirma a Exclusão?</h3>
+<div>
+    <h4>Lancamento</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DataLancamento)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DataLancamento)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ValorLancamento)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ValorLancamento)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProdutoId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProdutoId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FuncionarioId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FuncionarioId)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a asp-action="Index">Retornar na Listagem</a>
+    </form>
+</div>

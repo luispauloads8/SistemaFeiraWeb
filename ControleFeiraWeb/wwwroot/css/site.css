@@ -19,7 +19,7 @@ body {
 }
 
 /* Make .svg files in the carousel display properly in older browsers */
-.carousel-inner .item img[src$=".svg"] {
+.carousel-inner .carousel-item img[src$=".svg"] {
     width: 100%;
 }
 
@@ -34,4 +34,20 @@ body {
     .carousel-caption {
         display: none;
     }
+}
+.carousel{
+    padding: 20px;
+
+}
+
+.nav-item {
+    font-size: 20px;
+}
+
+.formgroup {
+    margin-top: 10px;
+}
+
+.navbar-header {
+    background-color: #f8f8f8;
 }
